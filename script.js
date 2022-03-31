@@ -16,7 +16,7 @@ function computersMove(){
 
 function playersMove(){
     let input = prompt("Type in your move(rock, paper, scissors):");
-    input.toLowerCase();
+    input = input.toLowerCase();
     if(moveIndexes[input] != undefined){
         return moveIndexes[input];
     }
@@ -25,7 +25,7 @@ function playersMove(){
 
 function game(rounds){
     let playerScore = 0, computerScore = 0;
-    const maxScore = Math.floor(rounds/2);
+    const maxScore = Math.ceil(rounds/2);
     for (let i = 0; i < rounds; ++i){
         
         alert(
@@ -37,12 +37,17 @@ function game(rounds){
 
         let player = playersMove();
         let computer = computersMove();
-        alert(`Computers move: ${indexMoves[computer]}`);
 
         if (player === -1){
             alert("A mistake occured, try again!")
             i--;
-        } else if ((player + 1) % 3 === computer){
+            continue;
+        }
+
+        alert(`Computers move: ${indexMoves[computer]}`);
+
+        
+        if ((player + 1) % 3 === computer){
             alert("You Won!");
             playerScore ++;
         } else if ((computer + 1) % 3 === player){
@@ -53,13 +58,25 @@ function game(rounds){
             i--;
         }
 
-        if (playerScore > maxScore){
+        if (playerScore == maxScore){
             alert("Bravo! You won the game!")
             break;
         }
-        if (computerScore > maxScore){
+        if (computerScore == maxScore){
             alert("Ha Ha! I won the game! Let's go again.")
             break;
         }
     }
 }
+
+const inputBox = document.querySelector("#roundNumberInput");
+
+function startGame(){
+    let numberOfRounds = inputBox.value;
+    inputBox.value = "";
+    game(numberOfRounds);
+}
+
+inputBox.addEventListener("keydown", (event) => {if (event.key === "Enter") startGame()} )
+
+console.log('To play, type in "game(number of rounds)."');
