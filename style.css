@@ -20,30 +20,43 @@ body{
     align-self: center;
 }
 
-.title.computer, .title.human{
+.computer-title, .human-title{
     width: 40%;
 }
 
-.title.computer{
+.computer-title{
     font-family: 'Ubuntu Mono', monospace;
 }
 
-.title.versus{
+.versus-title{
     width: 20%;
     font-family: 'Allan', cursive;
     font-size: min(10vw, 20vh);
 }
 
-.title.human{
+.human-title{
     font-family: 'Allan', cursive;
 }
 
 .arena{
-    box-sizing: border-box;
+    --background-opacity: 0.8;
     display: flex;
     justify-content: space-between;
     height: 80vh;
-    padding: 2% 0 5% 0;
+}
+
+.human{
+    background: linear-gradient(rgba(51,51,51,var(--background-opacity)), rgba(51,51,51,var(--background-opacity))), url("images/human.png");
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 70vh;
+}
+
+.computer{
+    background: linear-gradient(rgba(51,51,51,var(--background-opacity)), rgba(51,51,51,var(--background-opacity))), url("images/computer.png");
+    background-repeat: no-repeat;
+    background-size: 60vh;
+    background-position: 60% 120%;
 }
 
 .arena > div{
@@ -55,10 +68,12 @@ body{
 }
 
 .toolbox{
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    padding: 2vh 0 5vh 0;
 }
 
 .image-wrapper{
