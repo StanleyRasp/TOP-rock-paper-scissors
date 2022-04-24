@@ -11,10 +11,28 @@
     <title>Rock, paper, scissors Game</title>
 </head>
 <body>
-    <h1>Rock, paper, scissors game!<br></h1>
-    <h2>Open the console<span class="blink">_</span><br>Or select the number of rounds you want to play</h2>
-    <input type="text" id="roundNumberInput" placeholder="NO. of rounds">
-
-    <script src="script.js"></script>
+    <div class="width-wrapper">
+        <div class="header">
+            <div class="computer title">Computer</div>
+            <div class="versus title">Vs.</div>
+            <div class="human title">Human</div>
+        </div>
+        <div class="arena">
+            <div class="computer">
+                <div class="toolbox">
+                    <div class="image-wrapper"><img src="./images/rock.png" alt="rock-image"></div>
+                    <div class="image-wrapper"><img src="./images/paper.png" alt="paper-image"></div>
+                    <div class="image-wrapper"><img src="./images/scissors.png" alt="scissors-image"></div>
+                </div>
+            </div>
+            <div class="human">
+                <div class="toolbox">
+                    <div class="image-wrapper"><img src="./images/rock.png" alt="rock-image"></div>
+                    <div class="image-wrapper"><img src="./images/paper.png" alt="paper-image"></div>
+                    <div class="image-wrapper"><img src="./images/scissors.png" alt="scissors-image"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
