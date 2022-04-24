@@ -50,7 +50,7 @@ body{
     width: 50%;
 }
 
-.arena > .human > .toolbox{
+.arena > .computer > .toolbox{
     float: right;
 }
 
