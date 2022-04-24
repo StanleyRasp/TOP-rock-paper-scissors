@@ -69,3 +69,11 @@ body{
 .image-wrapper > img{
     width: 20vh;
 }
+
+.human .image-wrapper:hover img{
+    transform: scale(110%);
+}
+
+img{
+    transition: transform .1s;
+}
