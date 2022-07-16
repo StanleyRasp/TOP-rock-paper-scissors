@@ -1,82 +1,39 @@
-const moveIndexes = {
-    "rock" : 2,
-    "paper" : 1,
-    "scissors" : 0
-};
-
-const indexMoves = {
-    2 : "rock",
-    1 : "paper",
-    0 : "scissors"
-};
-
-function computersMove(){
-    return Math.floor(Math.random() * 2);
+function computersMove() {
+    return Math.floor(Math.random() * 3 - (1e-6));
 }
 
-function playersMove(){
-    let input = prompt("Type in your move(rock, paper, scissors):");
-    input = input.toLowerCase();
-    if(moveIndexes[input] != undefined){
-        return moveIndexes[input];
+function checkRandomness() {
+    let occurances = [0, 0, 0];
+    for(let i = 0; i < 1e4; i++){
+        occurances[computersMove()] ++;
     }
-    return -1;
+
+    console.log(`${occurances[0] / 1e4} \n ${occurances[1] / 1e4} \n ${occurances[2] / 1e4}`);
 }
 
-function game(rounds){
-    let playerScore = 0, computerScore = 0;
-    const maxScore = Math.ceil(rounds/2);
-    for (let i = 0; i < rounds; ++i){
-        
-        alert(
-            `Round ${i+1}/${rounds}\n
-        Score:\n
-        Player: ${playerScore} points\n
-        Computer: ${computerScore} points`
-        )
+let rockButton = document.querySelector("#rock-button");
+let paperButton = document.querySelector("#paper-button");
+let scissorsButton = document.querySelector("#scissors-button");
 
-        let player = playersMove();
-        let computer = computersMove();
+let playerDamage = 0;
+let computersDamage = 0;
 
-        if (player === -1){
-            alert("A mistake occured, try again!")
-            i--;
-            continue;
-        }
-
-        alert(`Computers move: ${indexMoves[computer]}`);
-
-        
-        if ((player + 1) % 3 === computer){
-            alert("You Won!");
-            playerScore ++;
-        } else if ((computer + 1) % 3 === player){
-            alert("I Won!");
-            computerScore ++;
-        } else {
-            alert("It's a tie, let's try again!")
-            i--;
-        }
-
-        if (playerScore == maxScore){
-            alert("Bravo! You won the game!")
-            break;
-        }
-        if (computerScore == maxScore){
-            alert("Ha Ha! I won the game! Let's go again.")
-            break;
-        }
+function round(event){
+    let playerVal = event.path[0].dataset.value;
+    let computerVal = computersMove();
+    console.log(`${playerVal}, ${computerVal}`)
+    if ((playerVal + 1) % 3 == computerVal){
+        computersDamage ++;
+        console.log("Human won")
+    } else if ((computerVal + 1) % 3 == playerVal){
+        playerDamage ++;
+        console.log("Computer won")
+    } else {
+        console.log("It's a tie");
+        // tie
     }
 }
 
-const inputBox = document.querySelector("#roundNumberInput");
-
-function startGame(){
-    let numberOfRounds = inputBox.value;
-    inputBox.value = "";
-    game(numberOfRounds);
-}
-
-inputBox.addEventListener("keydown", (event) => {if (event.key === "Enter") startGame()} )
-
-console.log('To play, type in "game(number of rounds)."');
+rockButton.addEventListener("click", round);
+paperButton.addEventListener("click", round);
+scissorsButton.addEventListener("click", round);
