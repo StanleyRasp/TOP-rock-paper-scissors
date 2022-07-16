@@ -40,7 +40,7 @@ body{
 }
 
 .arena{
-    --background-opacity: 0.8;
+    --background-opacity: 0.4;
     display: flex;
     justify-content: space-between;
     height: 80vh;
@@ -48,17 +48,43 @@ body{
 }
 
 .human{
-    background: linear-gradient(rgba(51,51,51,var(--background-opacity)), rgba(51,51,51,var(--background-opacity))), url("images/human-images/human-0-dmg.png");
+    background-image: url("images/human-images/human-0-dmg.png");
     background-repeat: no-repeat;
     background-position: 0% 0%;
     background-size: 80vh;
 }
 
+.human::after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: var(--background-opacity)
+}
+
 .computer{
-    background: linear-gradient(rgba(51,51,51,var(--background-opacity)), rgba(51,51,51,var(--background-opacity))), url("images/computer-images/computer-0-dmg.png");
+    background-image: url("images/computer-images/computer-0-dmg.png");
     background-repeat: no-repeat;
     background-size: 60vh;
     background-position: 20% center;
+}
+
+.computer::after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: var(--background-opacity)
+}
+
+.human > *, .computer > *{
+    z-index: 10;
 }
 
 .arena > div{

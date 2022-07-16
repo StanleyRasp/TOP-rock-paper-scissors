@@ -2,10 +2,15 @@ let rockButton = document.querySelector("#rock-button");
 let paperButton = document.querySelector("#paper-button");
 let scissorsButton = document.querySelector("#scissors-button");
 
-let playerDamage = 0;
-let computersDamage = 0;
+let humanDamage = 0;
+let computerDamage = 0;
 
 let interactable = true;
+
+function updateDamage(){
+    document.querySelector(".human").style.backgroundImage = `url("images/human-images/human-${humanDamage}-dmg.png")`;
+    document.querySelector(".computer").style.backgroundImage = `url("images/computer-images/computer-${computerDamage}-dmg.png")`;
+}
 
 function setup(){
     weapons = Array.from(document.querySelectorAll(".toolbox img"));
@@ -15,6 +20,41 @@ function setup(){
         weapon.style.top = `${topOffset}px`
         weapon.style.left = `${leftOffset}px`
     }
+
+    updateDamage();
+
+    rockButton.addEventListener("click", (event) => {if(interactable) {
+        document.querySelector("#rock-button img").style.transform = "scale(100%)"
+        round(event);
+    }});
+    paperButton.addEventListener("click", (event) => {if(interactable) {
+        document.querySelector("#paper-button img").style.transform = "scale(100%)"
+        round(event);
+    }});
+    scissorsButton.addEventListener("click", (event) => {if(interactable) {
+        document.querySelector("#scissors-button img").style.transform = "scale(100%)"
+        round(event);
+    }});
+    
+    rockButton.addEventListener("mouseover", (event) => {if(interactable) {
+        document.querySelector("#rock-button img").style.transform = "scale(110%)"
+    }});
+    paperButton.addEventListener("mouseover", (event) => {if(interactable) {
+        document.querySelector("#paper-button img").style.transform = "scale(110%)"
+    }});
+    scissorsButton.addEventListener("mouseover", (event) => {if(interactable) {
+        document.querySelector("#scissors-button img").style.transform = "scale(110%)"
+    }});
+    
+    rockButton.addEventListener("mouseout", (event) => {if(interactable) {
+        document.querySelector("#rock-button img").style.transform = "scale(100%)"
+    }});
+    paperButton.addEventListener("mouseout", (event) => {if(interactable) {
+        document.querySelector("#paper-button img").style.transform = "scale(100%)"
+    }});
+    scissorsButton.addEventListener("mouseout", (event) => {if(interactable) {
+        document.querySelector("#scissors-button img").style.transform = "scale(100%)"
+    }});
 }
 
 function computersMove() {
@@ -42,7 +82,6 @@ function resetWeapons(){
 
 }
 
-
 function round(event){
     let playerVal = event.path[0].dataset.value;
     let computerVal = computersMove();
@@ -51,50 +90,17 @@ function round(event){
     moveWeapons(playerVal, computerVal);
 
     if ((playerVal + 1) % 3 == computerVal){
-        computersDamage ++;
+        computerDamage ++;
         console.log("Human won")
     } else if ((computerVal + 1) % 3 == playerVal){
-        playerDamage ++;
+        humanDamage ++;
         console.log("Computer won")
     } else {
         console.log("It's a tie");
         // tie
     }
 
-    setTimeout(() => {resetWeapons()}, 2000);
+    setTimeout(() => {resetWeapons(); updateDamage();}, 2000);
 }
 
 setup();
-
-rockButton.addEventListener("click", (event) => {if(interactable) {
-    document.querySelector("#rock-button img").style.transform = "scale(100%)"
-    round(event);
-}});
-paperButton.addEventListener("click", (event) => {if(interactable) {
-    document.querySelector("#paper-button img").style.transform = "scale(100%)"
-    round(event);
-}});
-scissorsButton.addEventListener("click", (event) => {if(interactable) {
-    document.querySelector("#scissors-button img").style.transform = "scale(100%)"
-    round(event);
-}});
-
-rockButton.addEventListener("mouseover", (event) => {if(interactable) {
-    document.querySelector("#rock-button img").style.transform = "scale(110%)"
-}});
-paperButton.addEventListener("mouseover", (event) => {if(interactable) {
-    document.querySelector("#paper-button img").style.transform = "scale(110%)"
-}});
-scissorsButton.addEventListener("mouseover", (event) => {if(interactable) {
-    document.querySelector("#scissors-button img").style.transform = "scale(110%)"
-}});
-
-rockButton.addEventListener("mouseout", (event) => {if(interactable) {
-    document.querySelector("#rock-button img").style.transform = "scale(100%)"
-}});
-paperButton.addEventListener("mouseout", (event) => {if(interactable) {
-    document.querySelector("#paper-button img").style.transform = "scale(100%)"
-}});
-scissorsButton.addEventListener("mouseout", (event) => {if(interactable) {
-    document.querySelector("#scissors-button img").style.transform = "scale(100%)"
-}});
