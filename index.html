@@ -1,40 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Allan&family=Roboto+Mono&family=Rubik+Glitch&family=Ubuntu+Mono&display=swap" rel="stylesheet">
-    <title>Rock, paper, scissors Game</title>
-</head>
-<body>
-    <div class="width-wrapper">
-        <div class="header">
-            <div class="title human-title">Human</div>
-            <div class="title versus-title">Vs</div>
-            <div class="title computer-title">Computer</div>
-        </div>
-        <div class="arena">
-            <div class="human">
-                <div class="toolbox">
-                    <div class="image-wrapper"><img src="./images/rock.png" alt="rock-image"></div>
-                    <div class="image-wrapper"><img src="./images/paper.png" alt="paper-image"></div>
-                    <div class="image-wrapper"><img src="./images/scissors.png" alt="scissors-image"></div>
-                </div>
-                <div class="background"> </div>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js" defer></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Allan&family=Roboto+Mono&family=Rubik+Glitch&family=Ubuntu+Mono&display=swap" rel="stylesheet">
+        <title>Rock, paper, scissors Game</title>
+    </head>
+    <body>
+        <div class="width-wrapper">
+            <div class="header">
+                <div class="title human-title">Human</div>
+                <div class="title versus-title">Vs</div>
+                <div class="title computer-title">Computer</div>
             </div>
-            <div class="computer">
-                <div class="toolbox">
-                    <div class="image-wrapper"><img src="./images/rock.png" alt="rock-image"></div>
-                    <div class="image-wrapper"><img src="./images/paper.png" alt="paper-image"></div>
-                    <div class="image-wrapper"><img src="./images/scissors.png" alt="scissors-image"></div>
+            <div class="arena">
+                <div class="human">
+                    <div class="toolbox">
+                        <div class="image-wrapper" id="rock-button" data-value="2"><img src="./images/rock.png" alt="rock-image"></div>
+                        <div class="image-wrapper" id="paper-button" data-value="1"><img src="./images/paper.png" alt="paper-image"></div>
+                        <div class="image-wrapper" id="scissors-button" data-value="0"><img src="./images/scissors.png" alt="scissors-image"></div>
+                    </div>
+                    <div class="background"> </div>
                 </div>
-                <div class="background"> </div>
+                <div class="computer">
+                    <div class="toolbox">
+                        <div class="image-wrapper" data-value="2"><img src="./images/rock.png" alt="rock-image"></div>
+                        <div class="image-wrapper" data-value="1"><img src="./images/paper.png" alt="paper-image"></div>
+                        <div class="image-wrapper" data-value="0"><img src="./images/scissors.png" alt="scissors-image"></div>
+                    </div>
+                    <div class="background"> </div>
+                </div>
             </div>
         </div>
-    </div>
-</body>
+    </body>
 </html>
