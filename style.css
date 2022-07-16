@@ -86,23 +86,15 @@ body{
 }
 
 .image-wrapper > img{
-    max-width: 100%;
-    max-height: 100%;
+    display: block;
     pointer-events: none;
-}
-
-.human .image-wrapper:hover img{
-    transform: scale(110%);
-}
-
-img{
-    transition: transform .1s;
-}
-
-#rock-button > img{
     position: absolute;
     height: 20vh;
     width: 20vh;
-    /* left: calc(40% - 10vh);
-    top: calc(50% - 10vh); */
+    transition: transform .1s ease-in-out, left .5s ease-in-out, top .5s ease-in-out; 
+}
+
+.onArena{
+    left: calc(50% - 10vh) !important;
+    top: calc(50% - 10vh) !important;
 }
