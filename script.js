@@ -2,14 +2,59 @@ let rockButton = document.querySelector("#rock-button");
 let paperButton = document.querySelector("#paper-button");
 let scissorsButton = document.querySelector("#scissors-button");
 
+let gameOver = document.querySelector(".game-over");
+let fadeout = document.querySelector(".fadeout");
+
 let humanDamage = 0;
 let computerDamage = 0;
 
 let interactable = true;
 
+function showGameOver(){
+    gameOver.style.transform = "scale(100%)";
+}
+
+function hideGameOver(){
+    gameOver.style.transform = "scale(0%)";
+}
+
+function showFadeout(){
+    fadeout.style.opacity = "0.5";
+    fadeout.style.zIndex = 5;
+}
+
+function hideFadeout(){
+    fadeout.style.opacity = "0";
+    setTimeout(() => {fadeout.style.zIndex = -1;}, 1000)
+}
+
+function endGame(){
+    if (humanDamage == 3){
+        document.querySelector(".game-over .text").textContent = "You Lost!";
+    } else {
+        document.querySelector(".game-over .text").textContent = "You Won!";
+    }
+    document.querySelector(".game-over .score").textContent = `${computerDamage} : ${humanDamage}`;
+    showFadeout();
+    setTimeout(showGameOver, 700);
+}
+
+function restartGame(){
+    fadeout.style.opacity = 1;
+    fadeout.style.zIndex = 10;
+    setTimeout(() => {
+        hideGameOver(); 
+        humanDamage = 0;
+        computerDamage = 0;
+        updateDamage();
+    }, 1100);
+    setTimeout(() => {fadeout.style.opacity = 0;}, 1500);
+    setTimeout(() => {fadeout.style.zIndex = -1;}, 2500);
+}
+
 function damageHuman(){
     humanDamage++;
-    setTimeout(() => {document.querySelector(":root").style.setProperty("--human-background-opacity", "0.2")}, 1000);
+    setTimeout(() => {document.querySelector(":root").style.setProperty("--human-background-opacity", "0.2")}, 1500);
     setTimeout(() => {document.querySelector(".human").style.backgroundImage = `url("images/human-images/human-${humanDamage}-dmg.png")`}, 1700);
     setTimeout(() => {document.querySelector(":root").style.setProperty("--human-background-opacity", "0.6")}, 1900);
 }
@@ -69,6 +114,8 @@ function setup(){
     scissorsButton.addEventListener("mouseout", (event) => {if(interactable) {
         document.querySelector("#scissors-button img").style.transform = "scale(100%)"
     }});
+
+    document.querySelector(".restart").addEventListener("click", restartGame);
 }
 
 function computersMove() {
@@ -91,9 +138,11 @@ function resetWeapons(){
     for (let weapon of weapons){
         weapon.classList.remove("onArena")
     }
-    console.log(weapons);
     interactable = true;
 
+    if (computerDamage == 3 || humanDamage == 3){
+        endGame();
+    }
 }
 
 function round(event){

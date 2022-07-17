@@ -90,10 +90,10 @@ body{
 }
 
 .human > *, .computer > *{
-    z-index: 10;
+    z-index: 2;
 }
 
-.arena > div{
+.computer, .human{
     width: 50%;
 }
 
@@ -129,4 +129,53 @@ body{
 .onArena{
     left: calc(50% - 10vh) !important;
     top: calc(50% - 10vh) !important;
+}
+
+.game-over{
+    --width: 40vw;
+    --height: 50vh;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: var(--width);
+    height: var(--height);
+    left: calc(50% - (var(--width) / 2));
+    top: calc(50% - (var(--height) / 2));
+    text-align: center;
+    font-family: "Allan", cursive;
+    color: white;
+    text-shadow: black 0px 0px 5px;
+    transform: scale(0%);
+    transition: all 0.5s ease-in;
+    z-index: 7;
+}
+
+.game-over .text{
+    font-size: 15vh;
+}
+
+.game-over .score{
+    margin-top: -2%;
+    font-size: 10vh;
+}
+
+.game-over button{
+    margin-top: 3%;
+    font-family: inherit;
+    font-size: 6vh;
+    padding: 2% 4%;
+}
+
+.fadeout{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 1s ease-in;
 }
