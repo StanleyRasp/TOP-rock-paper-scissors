@@ -7,6 +7,20 @@ let computerDamage = 0;
 
 let interactable = true;
 
+function damageHuman(){
+    humanDamage++;
+    setTimeout(() => {document.querySelector(":root").style.setProperty("--human-background-opacity", "0.2")}, 1000);
+    setTimeout(() => {document.querySelector(".human").style.backgroundImage = `url("images/human-images/human-${humanDamage}-dmg.png")`}, 1700);
+    setTimeout(() => {document.querySelector(":root").style.setProperty("--human-background-opacity", "0.6")}, 1900);
+}
+
+function damageComputer(){
+    computerDamage++;
+    setTimeout(() => {document.querySelector(":root").style.setProperty("--computer-background-opacity", "0.2")}, 1500);
+    setTimeout(() => {document.querySelector(".computer").style.backgroundImage = `url("images/computer-images/computer-${computerDamage}-dmg.png")`}, 1700);
+    setTimeout(() => {document.querySelector(":root").style.setProperty("--computer-background-opacity", "0.6")}, 1900);
+}
+
 function updateDamage(){
     document.querySelector(".human").style.backgroundImage = `url("images/human-images/human-${humanDamage}-dmg.png")`;
     document.querySelector(".computer").style.backgroundImage = `url("images/computer-images/computer-${computerDamage}-dmg.png")`;
@@ -90,17 +104,14 @@ function round(event){
     moveWeapons(playerVal, computerVal);
 
     if ((playerVal + 1) % 3 == computerVal){
-        computerDamage ++;
-        console.log("Human won")
+        damageComputer();
     } else if ((computerVal + 1) % 3 == playerVal){
-        humanDamage ++;
-        console.log("Computer won")
+        damageHuman();
     } else {
         console.log("It's a tie");
-        // tie
     }
 
-    setTimeout(() => {resetWeapons(); updateDamage();}, 2000);
+    setTimeout(resetWeapons, 2000);
 }
 
 setup();
